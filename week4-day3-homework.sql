@@ -19,8 +19,9 @@ FROM customer
 WHERE customer_id IN (
     SELECT customer_id
     FROM payment
+    WHERE amount > 175 -- who have made ~at least one payment~ over $175
     GROUP BY customer_id
-    HAVING SUM(amount) > 175
+    -- HAVING SUM(amount) > 175 -- who have made payments ~totaling~ over $175
 );
 
 -- 4. List all customers that live in Nepal (use the city table)
